@@ -1,0 +1,315 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Fix for buttons - ensure they have visible background and text */
+.bg-reccy-blue {
+  background-color: #3B82F6 !important;
+  color: white !important;
+}
+
+.hover\:bg-reccy-lightBlue:hover {
+  background-color: #60A5FA !important;
+  color: white !important;
+}
+
+/* Solution page buttons */
+.bg-blue-900 {
+  background-color: #1e3a8a !important;
+}
+
+.hover\:bg-blue-800:hover {
+  background-color: #1e40af !important;
+}
+
+/* Ensure button text is visible */
+button, .button {
+  position: relative;
+  z-index: 10;
+  color: inherit;
+}
+
+/* White button on blue background */
+.bg-white.text-blue-700 {
+  background-color: white !important;
+  color: #1D4ED8 !important;
+}
+
+.bg-white.text-blue-700:hover {
+  background-color: #F9FAFB !important;
+}
+
+/* Outline button on blue background */
+.border-white.text-white {
+  border-color: white !important;
+  color: white !important;
+}
+
+.border-white.text-white:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+}
+
+/* Additional styling for Watch Demo button */
+.border-2.border-white.text-white {
+  border-width: 2px !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Dashboard link button */
+.dashboard-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  color: #111827;
+  transition: all 0.2s;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-link:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.dark .dashboard-link {
+  background-color: #1f2937;
+  border-color: #374151;
+  color: #f9fafb;
+}
+
+.dark .dashboard-link:hover {
+  background-color: #2d3748;
+}
+
+/* Chart legend styles */
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.chart-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.chart-legend-color {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+}
+
+/* Loading animation for dashboard */
+.dashboard-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  width: 100%;
+}
+
+.dashboard-loader__spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(59, 130, 246, 0.2);
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Style for the brand button (Get Started) */
+.button-brand {
+  background-color: #3B82F6 !important;
+  color: #000000 !important;
+}
+
+.button-brand:hover {
+  background-color: #60A5FA !important;
+}
+
+/* Fix for Tabs component */
+[data-state="active"] {
+  display: block !important;
+}
+
+[data-state="inactive"] {
+  display: none !important;
+}
+
+.app {
+  min-height: 100vh;
+  background-color: #f5f7fa;
+}
+
+.signup-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.signup-container h1 {
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.signup-form input {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.signup-form button {
+  padding: 0.75rem;
+  background-color: #8884d8;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.signup-form button:hover {
+  background-color: #7673b8;
+}
+
+.signup-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.main-container {
+  min-height: 100vh;
+}
+
+.navbar {
+  background: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.navbar h1 {
+  margin: 0;
+  color: #333;
+}
+
+.scrape-form {
+  display: flex;
+  gap: 1rem;
+}
+
+.scrape-form input {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-width: 300px;
+}
+
+.scrape-form button {
+  padding: 0.5rem 1rem;
+  background-color: #8884d8;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.scrape-form button:hover {
+  background-color: #7673b8;
+}
+
+.scrape-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.error-message {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #dc3545;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translate(-50%, 100%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
