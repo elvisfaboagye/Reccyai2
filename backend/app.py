@@ -1,4 +1,5 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, Flask
+from flask_cors import CORS
 from datetime import datetime, timedelta
 import jwt
 from .config import Config
@@ -7,6 +8,23 @@ from .services.scraper_service import ScraperService
 from .services.recommendation_service import RecommendationService
 from .services.analytics_service import AnalyticsService
 from .firebase_config import get_all_users, get_user_by_id, create_user, update_user, delete_user
+from services.auth_service import AuthService
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+app = Flask(__name__)
+
+# Configure CORS
+CORS(app, resources={
+    r"/*": {
+        "origins": ["http://localhost:8080", "https://reccyai2.vercel.app"],
+        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"]
+    }
+})
 
 # Create blueprint
 main_bp = Blueprint('main', __name__)
@@ -15,6 +33,7 @@ main_bp = Blueprint('main', __name__)
 scraper_service = ScraperService()
 recommendation_service = RecommendationService()
 analytics_service = AnalyticsService()
+auth_service = AuthService()
 
 # Predefined industry categories
 INDUSTRY_CATEGORIES = [
@@ -242,3 +261,7 @@ def get_analytics(user_id):
         return jsonify(analytics_data)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
