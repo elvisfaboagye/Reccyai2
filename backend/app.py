@@ -1,13 +1,13 @@
-from flask import Blueprint, request, jsonify, Flask
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from datetime import datetime, timedelta
 import jwt
-from .config import Config
-from .database import db
-from .services.scraper_service import ScraperService
-from .services.recommendation_service import RecommendationService
-from .services.analytics_service import AnalyticsService
-from .firebase_config import get_all_users, get_user_by_id, create_user, update_user, delete_user
+from config import Config
+from database import db
+from services.scraper_service import ScraperService
+from services.recommendation_service import RecommendationService
+from services.analytics_service import AnalyticsService
+from firebase_config import get_all_users, get_user_by_id, create_user, update_user, delete_user
 from services.auth_service import AuthService
 import os
 from dotenv import load_dotenv
@@ -26,9 +26,6 @@ CORS(app, resources={
     }
 })
 
-# Create blueprint
-main_bp = Blueprint('main', __name__)
-
 # Initialize services
 scraper_service = ScraperService()
 recommendation_service = RecommendationService()
@@ -42,7 +39,7 @@ INDUSTRY_CATEGORIES = [
 ]
 
 # Root route
-@main_bp.route('/')
+@app.route('/')
 def index():
     return jsonify({
         'status': 'ok',
@@ -57,14 +54,14 @@ def index():
     })
 
 # Error handlers
-@main_bp.errorhandler(404)
+@app.errorhandler(404)
 def not_found_error(error):
     return jsonify({
         'error': 'Not Found',
         'message': 'The requested URL was not found on the server.'
     }), 404
 
-@main_bp.errorhandler(500)
+@app.errorhandler(500)
 def internal_error(error):
     return jsonify({
         'error': 'Internal Server Error',
@@ -72,7 +69,7 @@ def internal_error(error):
     }), 500
 
 # Firebase Users Endpoints
-@main_bp.route('/api/users', methods=['GET'])
+@app.route('/api/users', methods=['GET'])
 def get_users():
     """Get all users from Firestore"""
     try:
@@ -81,7 +78,7 @@ def get_users():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@main_bp.route('/api/users/<user_id>', methods=['GET'])
+@app.route('/api/users/<user_id>', methods=['GET'])
 def get_user(user_id):
     """Get a specific user by ID from Firestore"""
     try:
@@ -92,7 +89,7 @@ def get_user(user_id):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@main_bp.route('/api/users', methods=['POST'])
+@app.route('/api/users', methods=['POST'])
 def add_user():
     """Create a new user in Firestore"""
     try:
@@ -105,7 +102,7 @@ def add_user():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@main_bp.route('/api/users/<user_id>', methods=['PUT'])
+@app.route('/api/users/<user_id>', methods=['PUT'])
 def update_user_endpoint(user_id):
     """Update a user in Firestore"""
     try:
@@ -118,7 +115,7 @@ def update_user_endpoint(user_id):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@main_bp.route('/api/users/<user_id>', methods=['DELETE'])
+@app.route('/api/users/<user_id>', methods=['DELETE'])
 def delete_user_endpoint(user_id):
     """Delete a user from Firestore"""
     try:
@@ -128,7 +125,7 @@ def delete_user_endpoint(user_id):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@main_bp.route('/signup', methods=['POST'])
+@app.route('/signup', methods=['POST'])
 def signup():
     try:
         data = request.get_json()
@@ -183,7 +180,7 @@ def signup():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@main_bp.route('/scrape', methods=['POST'])
+@app.route('/scrape', methods=['POST'])
 def scrape_website():
     try:
         data = request.get_json()
@@ -235,7 +232,7 @@ def scrape_website():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@main_bp.route('/analytics/<user_id>', methods=['GET'])
+@app.route('/analytics/<user_id>', methods=['GET'])
 def get_analytics(user_id):
     try:
         # Verify token
