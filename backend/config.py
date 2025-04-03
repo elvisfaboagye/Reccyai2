@@ -1,25 +1,26 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Config:
     # MongoDB configuration
-    MONGODB_URI = "mongodb+srv://aboagyeelvis89:Aboagye1.@cluster0.s8jbqlx.mongodb.net/reccy_ai?retryWrites=true&w=majority"
+    MONGODB_URI = os.getenv('MONGODB_URI')
     
     # JWT configuration
-    JWT_SECRET_KEY = "your-secret-key"  # Change this to a secure secret key
+    JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY', 'your-secret-key')  # Change this to a secure secret key
     JWT_ALGORITHM = "HS256"
     JWT_ACCESS_TOKEN_EXPIRES = 3600  # 1 hour
     
     # Firebase configuration (for real-time updates)
-    FIREBASE_CONFIG = {
-        # Add your Firebase config here
-    }
-    FIREBASE_API_KEY = "your-firebase-api-key"
+    FIREBASE_CONFIG = os.getenv('FIREBASE_CONFIG', '{}')
+    FIREBASE_API_KEY = os.getenv('FIREBASE_API_KEY')
     
     # ML Model configurations
     MODEL_PATH = 'models/'
     SPACY_MODEL = 'en_core_web_sm'
     
     # API configurations
-    CORS_ORIGINS = ['http://localhost:3000', 'https://your-production-frontend.com']
+    CORS_ORIGINS = os.getenv('CORS_ORIGINS', 'http://localhost:3000,https://your-production-frontend.com').split(',')
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB max file size
-    OPENAI_API_KEY = "your-openai-api-key"
+    OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')

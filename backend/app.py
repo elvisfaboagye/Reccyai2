@@ -3,11 +3,12 @@ from flask_cors import CORS
 from flask_socketio import SocketIO
 from datetime import datetime, timedelta
 import jwt
-from config import Config
-from database import db
-from services.scraper_service import ScraperService
-from services.recommendation_service import RecommendationService
-from services.analytics_service import AnalyticsService
+from backend.config import Config
+from backend.database import db
+from backend.services.scraper_service import ScraperService
+from backend.services.recommendation_service import RecommendationService
+from backend.services.analytics_service import AnalyticsService
+from backend.firebase_config import get_all_users, get_user_by_id, create_user, update_user, delete_user
 
 app = Flask(__name__)
 CORS(app)
@@ -24,6 +25,63 @@ INDUSTRY_CATEGORIES = [
     "Technology", "E-commerce", "Finance", "Healthcare", "Education",
     "Entertainment", "Real Estate", "Automotive", "Travel", "Food"
 ]
+
+# Firebase Users Endpoints
+@app.route('/api/users', methods=['GET'])
+def get_users():
+    """Get all users from Firestore"""
+    try:
+        users = get_all_users()
+        return jsonify(users), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/users/<user_id>', methods=['GET'])
+def get_user(user_id):
+    """Get a specific user by ID from Firestore"""
+    try:
+        user = get_user_by_id(user_id)
+        if user:
+            return jsonify(user), 200
+        return jsonify({'error': 'User not found'}), 404
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/users', methods=['POST'])
+def add_user():
+    """Create a new user in Firestore"""
+    try:
+        user_data = request.get_json()
+        if not user_data:
+            return jsonify({'error': 'No data provided'}), 400
+        
+        new_user = create_user(user_data)
+        return jsonify(new_user), 201
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/users/<user_id>', methods=['PUT'])
+def update_user_endpoint(user_id):
+    """Update a user in Firestore"""
+    try:
+        user_data = request.get_json()
+        if not user_data:
+            return jsonify({'error': 'No data provided'}), 400
+        
+        updated_user = update_user(user_id, user_data)
+        return jsonify(updated_user), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/users/<user_id>', methods=['DELETE'])
+def delete_user_endpoint(user_id):
+    """Delete a user from Firestore"""
+    try:
+        if delete_user(user_id):
+            return jsonify({'message': 'User deleted successfully'}), 200
+        return jsonify({'error': 'User not found'}), 404
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/signup', methods=['POST'])
 def signup():

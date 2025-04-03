@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from database import db
+from backend.database import db
 
 class AnalyticsService:
     def __init__(self):

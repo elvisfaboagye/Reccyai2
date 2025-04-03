@@ -1,1 +1,11 @@
-.vercel
+# Node.js
+node_modules/
+
+# Python
+venv/
+
+# Vercel
+.vercel/
+
+# Logs
+*.log
