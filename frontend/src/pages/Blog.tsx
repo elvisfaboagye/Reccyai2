@@ -80,11 +80,11 @@ const Blog = () => {
       <section className="pt-32 pb-20 px-6">
         <div className="container mx-auto">
           <div className="max-w-3xl mx-auto text-center reveal-animation">
-            <div className="text-sm font-medium inline-block px-4 py-2 bg-recombee-blue/10 rounded-full text-recombee-blue border border-recombee-blue/20 mb-4">
+            <div className="text-sm font-medium inline-block px-4 py-2 bg-reccy-blue/10 rounded-full text-reccy-blue border border-reccy-blue/20 mb-4">
               Insights & Updates
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Reccy AI <span className="text-recombee-blue">Blog</span>
+              Reccy AI <span className="text-reccy-blue">Blog</span>
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
               Discover the latest trends, best practices, and insights in AI-powered personalization and recommendation systems.
@@ -112,7 +112,7 @@ const Blog = () => {
                 />
               </div>
               <div className="p-8">
-                <div className="text-sm font-medium inline-block px-3 py-1 bg-recombee-blue/10 rounded-full text-recombee-blue mb-4">
+                <div className="text-sm font-medium inline-block px-3 py-1 bg-reccy-blue/10 rounded-full text-reccy-blue mb-4">
                   Featured Post
                 </div>
                 <h2 className="text-2xl md:text-3xl font-bold mb-4">
@@ -131,7 +131,7 @@ const Blog = () => {
                     12 min read
                   </div>
                 </div>
-                <Button className="bg-recombee-blue hover:bg-recombee-lightBlue text-white">
+                <Button className="bg-reccy-blue hover:bg-reccy-lightBlue text-white">
                   Read Article
                 </Button>
               </div>
@@ -145,7 +145,7 @@ const Blog = () => {
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold mb-12 reveal-animation">
-              Latest <span className="text-recombee-blue">Articles</span>
+              Latest <span className="text-reccy-blue">Articles</span>
             </h2>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -161,7 +161,7 @@ const Blog = () => {
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute top-4 left-4">
-                      <span className="text-xs font-medium px-3 py-1 bg-white/90 dark:bg-gray-800/90 rounded-full text-recombee-blue">
+                      <span className="text-xs font-medium px-3 py-1 bg-white/90 dark:bg-gray-800/90 rounded-full text-reccy-blue">
                         {post.category}
                       </span>
                     </div>
@@ -183,7 +183,7 @@ const Blog = () => {
                         {post.readTime}
                       </div>
                     </div>
-                    <Button variant="link" className="p-0 text-recombee-blue hover:text-recombee-lightBlue flex items-center gap-1">
+                    <Button variant="link" className="p-0 text-reccy-blue hover:text-reccy-lightBlue flex items-center gap-1">
                       Read more <ArrowRight className="w-4 h-4" />
                     </Button>
                   </div>
@@ -192,7 +192,7 @@ const Blog = () => {
             </div>
             
             <div className="mt-16 text-center reveal-animation">
-              <Button variant="outline" className="border-recombee-blue text-recombee-blue">
+              <Button variant="outline" className="border-reccy-blue text-reccy-blue">
                 View All Articles
               </Button>
             </div>
@@ -201,7 +201,7 @@ const Blog = () => {
       </section>
       
       {/* Newsletter */}
-      <section className="py-20 px-6 bg-recombee-blue text-white">
+      <section className="py-20 px-6 bg-reccy-blue text-white">
         <div className="container mx-auto">
           <div className="max-w-3xl mx-auto text-center reveal-animation">
             <h2 className="text-3xl font-bold mb-6">
@@ -216,7 +216,7 @@ const Blog = () => {
                 placeholder="Your email address" 
                 className="flex-grow px-4 py-3 rounded-lg focus:outline-none text-gray-800"
               />
-              <Button className="bg-white text-recombee-blue hover:bg-gray-100 whitespace-nowrap">
+              <Button className="bg-white text-reccy-blue hover:bg-gray-100 whitespace-nowrap">
                 Subscribe
               </Button>
             </div>

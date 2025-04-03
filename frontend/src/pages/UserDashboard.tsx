@@ -3,9 +3,9 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { 
   Activity, Box, Cpu, Database, BarChart3, Users, Settings, ChevronRight, 
-  BarChart, PieChart, LineChart, ArrowUpRight 
+  ArrowUpRight, Play, Film, Clock, TrendingUp, UserCircle, BarChart2, LineChart as LineChartIcon, PieChart as PieChartIcon, ShoppingCart, DollarSign, ShoppingBag
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { DashboardHeader } from '@/components/dashboard/DashboardHeader';
 import { DashboardMetrics, type MetricData } from '@/components/dashboard/DashboardMetrics';
@@ -13,6 +13,8 @@ import { RecommendationEngineCard } from '@/components/dashboard/RecommendationE
 import { RecentActivity } from '@/components/dashboard/RecentActivity';
 import { ApiIntegrationGuide } from '@/components/dashboard/ApiIntegrationGuide';
 import { useToast } from '@/components/ui/use-toast';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { BarChart, LineChart, PieChart } from '@/components/ui/chart';
 
 type UserData = {
   id: string;
@@ -23,22 +25,30 @@ type UserData = {
   plan?: string;
 };
 
+// Update the ChartData interface
+interface ChartData {
+  name: string;
+  value: number;
+  date?: string;
+}
+
 const UserDashboard = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState('overview');
   const [userData, setUserData] = useState<UserData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [timeRange, setTimeRange] = useState('Last 30 days');
+  const [timeRange, setTimeRange] = useState('daily');
+  const [industry, setIndustry] = useState<string>('');
   
-  // Mock data
+  // Mock data for metrics
   const [metrics, setMetrics] = useState<MetricData[]>([
     { 
       title: 'Total Recommendations',
       value: '24,896',
       change: 12.5,
       description: 'vs previous period',
-      icon: <BarChart className="h-4 w-4" />
+      icon: <BarChart2 className="h-4 w-4" />
     },
     { 
       title: 'Conversion Rate',
@@ -144,6 +154,13 @@ const UserDashboard = () => {
       const parsedUser = JSON.parse(storedUser);
       setUserData(parsedUser);
       
+      // Get industry from form data
+      const formData = localStorage.getItem('formData');
+      if (formData) {
+        const { industry } = JSON.parse(formData);
+        setIndustry(industry || 'General');
+      }
+      
       // Simulate loading data
       setTimeout(() => {
         setIsLoading(false);
@@ -218,6 +235,206 @@ const UserDashboard = () => {
     navigate('/pricing');
   };
 
+  // Time-based analytics data
+  const getTimeBasedData = (range: string) => {
+    switch (range) {
+      case 'daily':
+        return [
+          { name: 'Mon', value: 48 },
+          { name: 'Tue', value: 52 },
+          { name: 'Wed', value: 55 },
+          { name: 'Thu', value: 58 },
+          { name: 'Fri', value: 62 },
+          { name: 'Sat', value: 60 },
+          { name: 'Sun', value: 62 }
+        ];
+      case 'weekly':
+        return [
+          { name: 'Week 1', value: 52 },
+          { name: 'Week 2', value: 55 },
+          { name: 'Week 3', value: 58 },
+          { name: 'Week 4', value: 62 }
+        ];
+      case 'monthly':
+        return [
+          { name: 'Jan', value: 48 },
+          { name: 'Feb', value: 52 },
+          { name: 'Mar', value: 55 },
+          { name: 'Apr', value: 58 },
+          { name: 'May', value: 62 },
+          { name: 'Jun', value: 60 }
+        ];
+      default:
+        return [];
+    }
+  };
+
+  const getIndustryMetrics = () => {
+    switch (industry?.toLowerCase()) {
+      case 'e-commerce':
+        return {
+          metrics: [
+            {
+              title: "Total Orders",
+              value: "1,258",
+              change: "+5.3%",
+              description: "vs previous period",
+              icon: ShoppingCart
+            },
+            {
+              title: "Average Order Value",
+              value: "$89.99",
+              change: "+2.1%",
+              description: "vs previous period",
+              icon: DollarSign
+            },
+            {
+              title: "Cart Abandonment",
+              value: "68.2%",
+              change: "-1.2%",
+              description: "vs previous period",
+              icon: ShoppingBag
+            },
+            {
+              title: "Customer Lifetime Value",
+              value: "$245.50",
+              change: "+3.8%",
+              description: "vs previous period",
+              icon: Users
+            }
+          ],
+          deviceLabels: {
+            title: "Shopping Device Usage",
+            description: "Platform preferences for purchases",
+            categories: ['Smartphones', 'Desktop', 'Tablets', 'Smart TVs', 'Other Devices']
+          },
+          demographicLabels: {
+            title: "Customer Demographics",
+            description: "Age distribution of shoppers",
+            categories: ['18-24', '25-34', '35-44', '45-54', '55+']
+          },
+          geographicLabels: {
+            title: "Customer Locations",
+            description: "Global distribution of shoppers",
+            categories: ['North America', 'Europe', 'Asia Pacific', 'Latin America', 'Africa', 'Other']
+          },
+          densityLabels: {
+            title: "Market Density",
+            description: "Customer concentration by area",
+            categories: ['Metropolitan', 'Urban', 'Suburban', 'Rural']
+          }
+        };
+      case 'media':
+        return {
+          metrics: [
+            {
+              title: "Total Views",
+              value: "2.5M",
+              change: "+8.2%",
+              description: "vs previous period",
+              icon: Play
+            },
+            {
+              title: "Average Watch Time",
+              value: "4m 12s",
+              change: "+1.5%",
+              description: "vs previous period",
+              icon: Clock
+            },
+            {
+              title: "Engagement Rate",
+              value: "6.2%",
+              change: "+0.8%",
+              description: "vs previous period",
+              icon: TrendingUp
+            },
+            {
+              title: "Subscriber Growth",
+              value: "12.5K",
+              change: "+15.3%",
+              description: "vs previous period",
+              icon: UserCircle
+            }
+          ],
+          deviceLabels: {
+            title: "Viewing Device Usage",
+            description: "Platform preferences for content consumption",
+            categories: ['Smartphones', 'Smart TVs', 'Tablets', 'Desktop', 'Other Devices']
+          },
+          demographicLabels: {
+            title: "Viewer Demographics",
+            description: "Age distribution of viewers",
+            categories: ['18-24', '25-34', '35-44', '45-54', '55+']
+          },
+          geographicLabels: {
+            title: "Viewer Locations",
+            description: "Global distribution of viewers",
+            categories: ['North America', 'Europe', 'Asia Pacific', 'Latin America', 'Africa', 'Other']
+          },
+          densityLabels: {
+            title: "Viewer Density",
+            description: "Viewer concentration by area",
+            categories: ['Metropolitan', 'Urban', 'Suburban', 'Rural']
+          }
+        };
+      default:
+        return {
+          metrics: [
+            {
+              title: "Total Recommendations",
+              value: "1,258",
+              change: "+5.3%",
+              description: "vs previous period",
+              icon: BarChart2
+            },
+            {
+              title: "Conversion Rate",
+              value: "6.2%",
+              change: "+0.8%",
+              description: "vs previous period",
+              icon: LineChartIcon
+            },
+            {
+              title: "CTR",
+              value: "4.2%",
+              change: "+0.5%",
+              description: "vs previous period",
+              icon: PieChartIcon
+            },
+            {
+              title: "Active Users",
+              value: "12.5K",
+              change: "+15.3%",
+              description: "vs previous period",
+              icon: Users
+            }
+          ],
+          deviceLabels: {
+            title: "Device Usage",
+            description: "Platform and device preferences",
+            categories: ['Smartphones', 'Laptops', 'Tablets', 'Smart TVs', 'Other Devices']
+          },
+          demographicLabels: {
+            title: "User Demographics",
+            description: "Age and gender distribution",
+            categories: ['18-24', '25-34', '35-44', '45-54', '55+']
+          },
+          geographicLabels: {
+            title: "Geographic Distribution",
+            description: "User locations and regions",
+            categories: ['North America', 'Europe', 'Asia Pacific', 'Latin America', 'Africa', 'Other']
+          },
+          densityLabels: {
+            title: "Population Density",
+            description: "User concentration by area",
+            categories: ['Metropolitan', 'Urban', 'Suburban', 'Rural']
+          }
+        };
+    }
+  };
+
+  const industryData = getIndustryMetrics();
+
   if (!userData) {
     return null; // Will redirect in useEffect
   }
@@ -244,6 +461,9 @@ const UserDashboard = () => {
             <TabsList className="w-full justify-start">
               <TabsTrigger value="overview" className="flex gap-2">
                 <BarChart3 className="w-4 h-4" /> Overview
+              </TabsTrigger>
+              <TabsTrigger value="analytics" className="flex gap-2">
+                <Activity className="w-4 h-4" /> Analytics
               </TabsTrigger>
               <TabsTrigger value="recommendations" className="flex gap-2">
                 <Database className="w-4 h-4" /> Recommendations
@@ -282,28 +502,280 @@ const UserDashboard = () => {
                       <CardTitle className="flex items-center justify-between">
                         <span>Recommendation Performance</span>
                         <div className="flex items-center gap-2">
-                          <Button variant="ghost" size="sm" className="text-xs">
+                          <Button 
+                            variant={timeRange === 'daily' ? 'default' : 'ghost'} 
+                            size="sm" 
+                            className="text-xs"
+                            onClick={() => setTimeRange('daily')}
+                          >
                             Daily
                           </Button>
-                          <Button variant="ghost" size="sm" className="text-xs bg-gray-100 dark:bg-gray-800">
+                          <Button 
+                            variant={timeRange === 'weekly' ? 'default' : 'ghost'} 
+                            size="sm" 
+                            className="text-xs"
+                            onClick={() => setTimeRange('weekly')}
+                          >
                             Weekly
                           </Button>
-                          <Button variant="ghost" size="sm" className="text-xs">
+                          <Button 
+                            variant={timeRange === 'monthly' ? 'default' : 'ghost'} 
+                            size="sm" 
+                            className="text-xs"
+                            onClick={() => setTimeRange('monthly')}
+                          >
                             Monthly
                           </Button>
                         </div>
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <div className="h-[300px] flex items-center justify-center bg-gray-50 dark:bg-gray-900 rounded-md">
-                        <LineChart className="w-12 h-12 text-gray-300 dark:text-gray-700" />
+                      <div className="h-[300px]">
+                        <LineChart 
+                          data={getTimeBasedData(timeRange)}
+                          index="name"
+                          categories={["value"]}
+                          valueFormatter={(value) => `${value}`}
+                          showLegend={false}
+                          colors={["#3b82f6"]}
+                          className="w-full h-full"
+                          showXAxis={true}
+                          showYAxis={true}
+                        />
                       </div>
                     </CardContent>
                   </Card>
                 </div>
-                
-                <RecentActivity activities={activities} isLoading={isLoading} />
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>User Segments</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="h-[300px]">
+                      <PieChart 
+                        data={[
+                          { name: 'Casual Users', value: 35 },
+                          { name: 'Regular Users', value: 45 },
+                          { name: 'Power Users', value: 15 },
+                          { name: 'Enterprise', value: 5 }
+                        ]}
+                        index="name"
+                        categories={["value"]}
+                        valueFormatter={(value) => `${value}%`}
+                        colors={["#3b82f6", "#10b981", "#f59e0b", "#ef4444"]}
+                        className="w-full h-full"
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>User Growth</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="h-[300px]">
+                      <BarChart 
+                        data={[
+                          { name: 'Jan', value: 1200 },
+                          { name: 'Feb', value: 1500 },
+                          { name: 'Mar', value: 1800 },
+                          { name: 'Apr', value: 2200 },
+                          { name: 'May', value: 2800 },
+                          { name: 'Jun', value: 3200 }
+                        ]}
+                        index="name"
+                        categories={["value"]}
+                        valueFormatter={(value) => `${value.toLocaleString()}`}
+                        colors={["#10b981"]}
+                        className="w-full h-full"
+                        showXAxis={true}
+                        showYAxis={true}
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Engagement by Type</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="h-[300px]">
+                      <BarChart 
+                        data={[
+                          { category: 'Product Views', clicked: 64, completed: 42 },
+                          { category: 'Add to Cart', clicked: 78, completed: 65 },
+                          { category: 'Purchases', clicked: 72, completed: 58 },
+                          { category: 'Reviews', clicked: 68, completed: 45 }
+                        ]}
+                        index="category"
+                        categories={["clicked", "completed"]}
+                        colors={["#3b82f6", "#10b981"]}
+                        valueFormatter={(value) => `${value}%`}
+                        className="w-full h-full"
+                        showXAxis={true}
+                        showYAxis={true}
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="analytics" className="space-y-6">
+            {/* KPI Summary */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <Card className="bg-gradient-to-br from-blue-50 to-white dark:from-blue-950/20 dark:to-gray-900">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Avg. Watch Time</p>
+                      <p className="text-3xl font-bold">62 min</p>
+                      <p className="text-green-500 text-sm">+18% from last month</p>
+                    </div>
+                    <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900/20">
+                      <Clock className="h-6 w-6 text-blue-500" />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card className="bg-gradient-to-br from-purple-50 to-white dark:from-purple-950/20 dark:to-gray-900">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Content Discovery</p>
+                      <p className="text-3xl font-bold">68%</p>
+                      <p className="text-green-500 text-sm">+12.5% from last month</p>
+                    </div>
+                    <div className="p-3 rounded-full bg-purple-100 dark:bg-purple-900/20">
+                      <Film className="h-6 w-6 text-purple-500" />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card className="bg-gradient-to-br from-green-50 to-white dark:from-green-950/20 dark:to-gray-900">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Daily Plays</p>
+                      <p className="text-3xl font-bold">2,842</p>
+                      <p className="text-green-500 text-sm">+253 from yesterday</p>
+                    </div>
+                    <div className="p-3 rounded-full bg-green-100 dark:bg-green-900/20">
+                      <Play className="h-6 w-6 text-green-500" />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card className="bg-gradient-to-br from-orange-50 to-white dark:from-orange-950/20 dark:to-gray-900">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Subscriber Retention</p>
+                      <p className="text-3xl font-bold">92%</p>
+                      <p className="text-green-500 text-sm">+5.2% from last month</p>
+                    </div>
+                    <div className="p-3 rounded-full bg-orange-100 dark:bg-orange-900/20">
+                      <Users className="h-6 w-6 text-orange-500" />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Time-based Analytics */}
+            <Card>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle>Analytics Overview</CardTitle>
+                  <Select value={timeRange} onValueChange={setTimeRange}>
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="Select time range" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="daily">Daily</SelectItem>
+                      <SelectItem value="weekly">Weekly</SelectItem>
+                      <SelectItem value="monthly">Monthly</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="w-full h-64">
+                  <LineChart 
+                    data={getTimeBasedData(timeRange)}
+                    index="name"
+                    categories={["value"]}
+                    valueFormatter={(value) => `${value} mins`}
+                    showLegend={false}
+                    colors={["#3b82f6"]}
+                    className="w-full h-full"
+                    showXAxis={true}
+                    showYAxis={true}
+                  />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* User Analytics */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle>User Segments</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="w-full h-64">
+                    <PieChart 
+                      data={[
+                        { name: 'Casual Viewers', value: 35 },
+                        { name: 'Regular Subscribers', value: 45 },
+                        { name: 'Power Users', value: 15 },
+                        { name: 'Content Creators', value: 5 }
+                      ]}
+                      index="name"
+                      categories={["value"]}
+                      valueFormatter={(value) => `${value}%`}
+                      colors={["#3b82f6", "#10b981", "#f59e0b", "#ef4444"]}
+                      className="w-full h-full"
+                      showLegend={true}
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>User Growth</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="w-full h-64">
+                    <BarChart 
+                      data={[
+                        { name: 'Jan', value: 1200 },
+                        { name: 'Feb', value: 1500 },
+                        { name: 'Mar', value: 1800 },
+                        { name: 'Apr', value: 2200 },
+                        { name: 'May', value: 2800 },
+                        { name: 'Jun', value: 3200 }
+                      ]}
+                      index="name"
+                      categories={["value"]}
+                      valueFormatter={(value) => `${value.toLocaleString()}`}
+                      colors={["#10b981"]}
+                      className="w-full h-full"
+                      showLegend={true}
+                    />
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </TabsContent>
 
@@ -384,7 +856,7 @@ const UserDashboard = () => {
                     </div>
                   </div>
                   <div className="h-[200px] flex items-center justify-center mt-6">
-                    <PieChart className="w-12 h-12 text-gray-300 dark:text-gray-700" />
+                    <PieChartIcon className="w-12 h-12 text-gray-300 dark:text-gray-700" />
                   </div>
                 </CardContent>
               </Card>
@@ -485,90 +957,124 @@ const UserDashboard = () => {
           </TabsContent>
           
           <TabsContent value="audience">
-            <DashboardHeader 
-              title="Audience Insights"
-              subtitle="Understand your users and their behavior"
+            <DashboardHeader
+              title="Audience Analytics" 
+              subtitle="Track user segments and engagement patterns"
               onRefresh={handleRefresh}
               onExport={handleExport}
               isLoading={isLoading}
+              timeRanges={['Last 7 days', 'Last 30 days', 'Last 90 days', 'Year to date', 'All time']}
               selectedTimeRange={timeRange}
               onTimeRangeChange={handleTimeRangeChange}
             />
             
             <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                      Active Users
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold">1,258</div>
-                    <p className="text-xs text-gray-500">
-                      <span className="text-green-600">↑ 5.3%</span> vs previous period
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                      New Users
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold">328</div>
-                    <p className="text-xs text-gray-500">
-                      <span className="text-green-600">↑ 12.1%</span> vs previous period
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                      Avg. Session Duration
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold">4m 12s</div>
-                    <p className="text-xs text-gray-500">
-                      <span className="text-red-600">↓ 0.8%</span> vs previous period
-                    </p>
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                      Recommendation CTR
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold">6.2%</div>
-                    <p className="text-xs text-gray-500">
-                      <span className="text-red-600">↓ 0.8%</span> vs previous period
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-              
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <Card>
                   <CardHeader>
-                    <CardTitle>User Segments</CardTitle>
+                    <CardTitle>{industryData.deviceLabels.title}</CardTitle>
+                    <CardDescription>{industryData.deviceLabels.description}</CardDescription>
                   </CardHeader>
-                  <CardContent className="h-[300px] flex items-center justify-center">
-                    <PieChart className="w-12 h-12 text-gray-300 dark:text-gray-700" />
+                  <CardContent>
+                    <div className="h-[300px]">
+                      <BarChart 
+                        data={[
+                          { category: industryData.deviceLabels.categories[0], value: 35 },
+                          { category: industryData.deviceLabels.categories[1], value: 28 },
+                          { category: industryData.deviceLabels.categories[2], value: 18 },
+                          { category: industryData.deviceLabels.categories[3], value: 12 },
+                          { category: industryData.deviceLabels.categories[4], value: 7 }
+                        ]}
+                        index="category"
+                        categories={["value"]}
+                        valueFormatter={(value) => `${value}%`}
+                        colors={["#3b82f6"]}
+                        className="w-full h-full"
+                        showXAxis={true}
+                        showYAxis={true}
+                        yAxisLabel="Usage Percentage"
+                        xAxisLabel="Device Types"
+                      />
+                    </div>
                   </CardContent>
                 </Card>
+
                 <Card>
                   <CardHeader>
-                    <CardTitle>User Growth</CardTitle>
+                    <CardTitle>{industryData.geographicLabels.title}</CardTitle>
+                    <CardDescription>{industryData.geographicLabels.description}</CardDescription>
                   </CardHeader>
-                  <CardContent className="h-[300px] flex items-center justify-center">
-                    <LineChart className="w-12 h-12 text-gray-300 dark:text-gray-700" />
+                  <CardContent>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                      <div className="h-[450px]">
+                        <PieChart 
+                          data={[
+                            { name: industryData.geographicLabels.categories[0], value: 35 },
+                            { name: industryData.geographicLabels.categories[1], value: 25 },
+                            { name: industryData.geographicLabels.categories[2], value: 20 },
+                            { name: industryData.geographicLabels.categories[3], value: 10 },
+                            { name: industryData.geographicLabels.categories[4], value: 7 },
+                            { name: industryData.geographicLabels.categories[5], value: 3 }
+                          ]}
+                          index="name"
+                          categories={["value"]}
+                          valueFormatter={(value) => `${value}%`}
+                          colors={["#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6", "#ec4899"]}
+                          className="w-full h-full"
+                          showLegend={true}
+                        />
+                      </div>
+                      <div className="h-[450px]">
+                        <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">{industryData.densityLabels.title}</h3>
+                        <BarChart 
+                          data={[
+                            { category: industryData.densityLabels.categories[0], value: 45 },
+                            { category: industryData.densityLabels.categories[1], value: 30 },
+                            { category: industryData.densityLabels.categories[2], value: 15 },
+                            { category: industryData.densityLabels.categories[3], value: 10 }
+                          ]}
+                          index="category"
+                          categories={["value"]}
+                          valueFormatter={(value) => `${value}%`}
+                          colors={["#10b981"]}
+                          className="w-full h-full"
+                          showXAxis={true}
+                          showYAxis={true}
+                          yAxisLabel="User Distribution"
+                          xAxisLabel="Area Types"
+                        />
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
               </div>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>User Behavior</CardTitle>
+                  <CardDescription>Time of day and session patterns</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="h-[300px]">
+                    <LineChart 
+                      data={[
+                        { name: 'Morning', value: 35 },
+                        { name: 'Afternoon', value: 45 },
+                        { name: 'Evening', value: 55 },
+                        { name: 'Night', value: 30 }
+                      ]}
+                      index="name"
+                      categories={["value"]}
+                      valueFormatter={(value) => `${value}%`}
+                      showLegend={false}
+                      colors={["#3b82f6"]}
+                      className="w-full h-full"
+                      showXAxis={true}
+                      showYAxis={true}
+                    />
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </TabsContent>
           

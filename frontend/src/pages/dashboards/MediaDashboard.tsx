@@ -1,14 +1,15 @@
-
 import { useState, useEffect } from 'react';
 import DashboardLayout from '@/components/DashboardLayout';
 import DashboardCard from '@/components/DashboardCard';
 import { BarChart, LineChart, PieChart } from '@/components/ui/chart';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Play, Film, Clock, Users } from 'lucide-react';
+import { Play, Film, Clock, Users, TrendingUp, UserCircle } from 'lucide-react';
 import { useScrollToTop } from '@/utils/animations';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const MediaDashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [timeRange, setTimeRange] = useState('daily');
   
   // Scroll to top when component mounts
   useScrollToTop();
@@ -21,6 +22,40 @@ const MediaDashboard = () => {
     
     return () => clearTimeout(timer);
   }, []);
+
+  // Time-based analytics data
+  const getTimeBasedData = (range: string) => {
+    switch (range) {
+      case 'daily':
+        return [
+          { date: 'Mon', value: 48 },
+          { date: 'Tue', value: 52 },
+          { date: 'Wed', value: 55 },
+          { date: 'Thu', value: 58 },
+          { date: 'Fri', value: 62 },
+          { date: 'Sat', value: 60 },
+          { date: 'Sun', value: 62 }
+        ];
+      case 'weekly':
+        return [
+          { date: 'Week 1', value: 52 },
+          { date: 'Week 2', value: 55 },
+          { date: 'Week 3', value: 58 },
+          { date: 'Week 4', value: 62 }
+        ];
+      case 'monthly':
+        return [
+          { date: 'Jan', value: 48 },
+          { date: 'Feb', value: 52 },
+          { date: 'Mar', value: 55 },
+          { date: 'Apr', value: 58 },
+          { date: 'May', value: 62 },
+          { date: 'Jun', value: 60 }
+        ];
+      default:
+        return [];
+    }
+  };
 
   return (
     <DashboardLayout 
@@ -86,6 +121,35 @@ const MediaDashboard = () => {
               </div>
             </DashboardCard>
           </div>
+          
+          {/* Time-based Analytics */}
+          <DashboardCard 
+            title="Analytics Overview" 
+            description="Track performance metrics over time"
+            isLoading={isLoading}
+          >
+            <div className="mb-4 flex justify-end">
+              <Select value={timeRange} onValueChange={setTimeRange}>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Select time range" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="daily">Daily</SelectItem>
+                  <SelectItem value="weekly">Weekly</SelectItem>
+                  <SelectItem value="monthly">Monthly</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <LineChart 
+              className="w-full h-64"
+              data={getTimeBasedData(timeRange)}
+              index="date"
+              categories={["value"]}
+              valueFormatter={(value) => `${value} mins`}
+              showLegend={false}
+              colors={["#3b82f6"]}
+            />
+          </DashboardCard>
           
           {/* Charts */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -188,6 +252,50 @@ const MediaDashboard = () => {
         </TabsContent>
 
         <TabsContent value="viewers" className="space-y-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <DashboardCard 
+              title="User Segments" 
+              description="Distribution of user types"
+              isLoading={isLoading}
+            >
+              <PieChart 
+                className="w-full h-64"
+                data={[
+                  { name: 'Casual Viewers', value: 35 },
+                  { name: 'Regular Subscribers', value: 45 },
+                  { name: 'Power Users', value: 15 },
+                  { name: 'Content Creators', value: 5 }
+                ]}
+                index="name"
+                categories={["value"]}
+                valueFormatter={(value) => `${value}%`}
+                colors={["#3b82f6", "#10b981", "#f59e0b", "#ef4444"]}
+              />
+            </DashboardCard>
+
+            <DashboardCard 
+              title="User Growth" 
+              description="Monthly user acquisition trend"
+              isLoading={isLoading}
+            >
+              <BarChart 
+                className="w-full h-64"
+                data={[
+                  { name: 'Jan', value: 1200 },
+                  { name: 'Feb', value: 1500 },
+                  { name: 'Mar', value: 1800 },
+                  { name: 'Apr', value: 2200 },
+                  { name: 'May', value: 2800 },
+                  { name: 'Jun', value: 3200 }
+                ]}
+                index="name"
+                categories={["value"]}
+                valueFormatter={(value) => `${value.toLocaleString()}`}
+                colors={["#10b981"]}
+              />
+            </DashboardCard>
+          </div>
+
           <DashboardCard title="Viewer Demographics" isLoading={isLoading}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <PieChart 

@@ -126,7 +126,7 @@ const FinanceSolution = () => {
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-base font-medium">Product Adoption</h3>
-                    <CreditCard className="h-5 w-5 text-recombee-blue" />
+                    <CreditCard className="h-5 w-5 text-reccy-blue" />
                   </div>
                   <div className="text-3xl font-bold">28%</div>
                   <div className="text-green-500 text-sm flex items-center mt-1">
@@ -156,7 +156,7 @@ const FinanceSolution = () => {
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-base font-medium">Revenue per Customer</h3>
-                    <DollarSign className="h-5 w-5 text-recombee-blue" />
+                    <DollarSign className="h-5 w-5 text-reccy-blue" />
                   </div>
                   <div className="text-3xl font-bold">$842</div>
                   <div className="text-green-500 text-sm flex items-center mt-1">
@@ -186,7 +186,7 @@ const FinanceSolution = () => {
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-base font-medium">Customer Satisfaction</h3>
-                    <Users className="h-5 w-5 text-recombee-blue" />
+                    <Users className="h-5 w-5 text-reccy-blue" />
                   </div>
                   <div className="text-3xl font-bold">87%</div>
                   <div className="text-green-500 text-sm flex items-center mt-1">

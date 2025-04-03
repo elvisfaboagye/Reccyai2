@@ -51,16 +51,16 @@ const Careers = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6 bg-gradient-to-b from-recombee-light to-white dark:from-gray-900 dark:to-gray-800">
+      <section className="pt-32 pb-20 px-6 bg-gradient-to-b from-reccy-light to-white dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto">
           <div className="max-w-3xl mx-auto text-center reveal-animation">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Join Our <span className="text-recombee-blue">Mission</span>
+              Join Our <span className="text-reccy-blue">Mission</span>
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
               We're building the future of personalized recommendations. Join our team of passionate innovators and help shape the next generation of AI-powered experiences.
             </p>
-            <Button className="bg-recombee-blue hover:bg-recombee-lightBlue text-white">
+            <Button className="bg-reccy-blue hover:bg-reccy-lightBlue text-white">
               View Open Positions
             </Button>
           </div>
@@ -72,7 +72,7 @@ const Careers = () => {
         <div className="container mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16 reveal-animation">
             <h2 className="text-3xl font-bold mb-6">
-              Our <span className="text-recombee-blue">Values</span>
+              Our <span className="text-reccy-blue">Values</span>
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300">
               These core principles guide how we work together and build our products.
@@ -104,11 +104,11 @@ const Careers = () => {
       </section>
       
       {/* Open Positions Section */}
-      <section className="py-20 px-6 bg-recombee-light dark:bg-gray-900">
+      <section className="py-20 px-6 bg-reccy-light dark:bg-gray-900">
         <div className="container mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16 reveal-animation">
             <h2 className="text-3xl font-bold mb-6">
-              Open <span className="text-recombee-blue">Positions</span>
+              Open <span className="text-reccy-blue">Positions</span>
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300">
               Join our team and help build the future of personalized recommendations.
@@ -122,9 +122,9 @@ const Careers = () => {
                 className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md mb-4 hover:shadow-lg transition-shadow flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
               >
                 <div>
-                  <h3 className="text-xl font-bold text-recombee-blue mb-2">{position.title}</h3>
+                  <h3 className="text-xl font-bold text-reccy-blue mb-2">{position.title}</h3>
                   <div className="flex flex-wrap gap-2 mb-4 md:mb-0">
-                    <span className="text-sm bg-recombee-blue/10 text-recombee-blue px-3 py-1 rounded-full">
+                    <span className="text-sm bg-reccy-blue/10 text-reccy-blue px-3 py-1 rounded-full">
                       {position.department}
                     </span>
                     <span className="text-sm bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full">
@@ -135,7 +135,7 @@ const Careers = () => {
                     </span>
                   </div>
                 </div>
-                <Button className="bg-recombee-blue hover:bg-recombee-lightBlue text-white whitespace-nowrap">
+                <Button className="bg-reccy-blue hover:bg-reccy-lightBlue text-white whitespace-nowrap">
                   Apply Now
                 </Button>
               </div>
@@ -149,7 +149,7 @@ const Careers = () => {
         <div className="container mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16 reveal-animation">
             <h2 className="text-3xl font-bold mb-6">
-              Why Work at <span className="text-recombee-blue">Reccy AI</span>
+              Why Work at <span className="text-reccy-blue">Reccy AI</span>
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300">
               We offer competitive benefits and a supportive work environment.

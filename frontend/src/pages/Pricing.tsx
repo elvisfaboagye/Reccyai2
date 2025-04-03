@@ -54,7 +54,7 @@ const pricingPlans = [
 
 const frequentlyAskedQuestions = [
   {
-    question: "How do I get started with Recombee?",
+    question: "How do I get started with Reccy?",
     answer: "Getting started is easy. Sign up for a free trial, integrate our API with your platform using our SDKs or RESTful API, and start delivering personalized recommendations to your users."
   },
   {
@@ -92,11 +92,11 @@ const Pricing = () => {
       <section className="pt-32 pb-20 px-6">
         <div className="container mx-auto">
           <div className="max-w-3xl mx-auto text-center reveal-animation">
-            <div className="text-sm font-medium inline-block px-4 py-2 bg-recombee-blue/10 rounded-full text-recombee-blue border border-recombee-blue/20 mb-4">
+            <div className="text-sm font-medium inline-block px-4 py-2 bg-reccy-blue/10 rounded-full text-reccy-blue border border-reccy-blue/20 mb-4">
               Pricing
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Simple, <span className="text-recombee-blue">Transparent</span> Pricing
+              Simple, <span className="text-reccy-blue">Transparent</span> Pricing
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
               Choose the plan that's right for your business. All plans include access to our powerful recommendation engine.
@@ -121,7 +121,7 @@ const Pricing = () => {
                 }`}
                 onClick={() => setBillingPeriod('annual')}
               >
-                Annual <span className="text-recombee-blue">Save 20%</span>
+                Annual <span className="text-reccy-blue">Save 20%</span>
               </button>
             </div>
           </div>
@@ -136,11 +136,11 @@ const Pricing = () => {
               <div 
                 key={index} 
                 className={`bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover-lift reveal-animation stagger-${index + 1} ${
-                  plan.popular ? 'ring-2 ring-recombee-blue relative' : ''
+                  plan.popular ? 'ring-2 ring-reccy-blue relative' : ''
                 }`}
               >
                 {plan.popular && (
-                  <div className="bg-recombee-blue text-white text-xs font-semibold py-1 px-4 absolute top-0 right-0 rounded-bl-lg">
+                  <div className="bg-reccy-blue text-white text-xs font-semibold py-1 px-4 absolute top-0 right-0 rounded-bl-lg">
                     MOST POPULAR
                   </div>
                 )}
@@ -164,7 +164,7 @@ const Pricing = () => {
                   <Button 
                     className={`w-full mb-8 ${
                       plan.popular 
-                        ? 'bg-recombee-blue hover:bg-recombee-lightBlue text-white' 
+                        ? 'bg-reccy-blue hover:bg-reccy-lightBlue text-white' 
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600'
                     }`}
                   >
@@ -174,7 +174,7 @@ const Pricing = () => {
                   <div className="space-y-3">
                     {plan.features.map((feature, featureIndex) => (
                       <div key={featureIndex} className="flex items-start">
-                        <Check className="w-5 h-5 text-recombee-blue mt-0.5 flex-shrink-0" />
+                        <Check className="w-5 h-5 text-reccy-blue mt-0.5 flex-shrink-0" />
                         <span className="ml-2 text-gray-600 dark:text-gray-300">{feature}</span>
                       </div>
                     ))}
@@ -188,7 +188,7 @@ const Pricing = () => {
             <p className="text-gray-500 dark:text-gray-400 mb-4">
               Need a custom plan? Contact our sales team for a tailored solution.
             </p>
-            <Button className="bg-recombee-blue hover:bg-recombee-lightBlue text-white">
+            <Button className="bg-reccy-blue hover:bg-reccy-lightBlue text-white">
               Contact Sales
             </Button>
           </div>
@@ -196,11 +196,11 @@ const Pricing = () => {
       </section>
       
       {/* Feature Comparison */}
-      <section className="py-20 px-6 bg-recombee-light dark:bg-gray-900">
+      <section className="py-20 px-6 bg-reccy-light dark:bg-gray-900">
         <div className="container mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16 reveal-animation">
             <h2 className="text-3xl font-bold mb-6">
-              Feature <span className="text-recombee-blue">Comparison</span>
+              Feature <span className="text-reccy-blue">Comparison</span>
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300">
               Compare our plans to find the right fit for your business needs.
@@ -213,7 +213,7 @@ const Pricing = () => {
                 <tr className="bg-gray-50 dark:bg-gray-700">
                   <th className="py-4 px-6 text-left">Feature</th>
                   <th className="py-4 px-6 text-center">Starter</th>
-                  <th className="py-4 px-6 text-center bg-recombee-blue/5">Growth</th>
+                  <th className="py-4 px-6 text-center bg-reccy-blue/5">Growth</th>
                   <th className="py-4 px-6 text-center">Enterprise</th>
                 </tr>
               </thead>
@@ -237,19 +237,19 @@ const Pricing = () => {
                     </div>
                   </td>
                   <td className="py-4 px-6 text-center">100,000</td>
-                  <td className="py-4 px-6 text-center bg-recombee-blue/5">1 million</td>
+                  <td className="py-4 px-6 text-center bg-reccy-blue/5">1 million</td>
                   <td className="py-4 px-6 text-center">Unlimited</td>
                 </tr>
                 <tr className="border-t border-gray-200 dark:border-gray-700">
                   <td className="py-4 px-6 font-medium">API Rate Limits</td>
                   <td className="py-4 px-6 text-center">10 req/sec</td>
-                  <td className="py-4 px-6 text-center bg-recombee-blue/5">50 req/sec</td>
+                  <td className="py-4 px-6 text-center bg-reccy-blue/5">50 req/sec</td>
                   <td className="py-4 px-6 text-center">Custom</td>
                 </tr>
                 <tr className="border-t border-gray-200 dark:border-gray-700">
                   <td className="py-4 px-6 font-medium">Data Retention</td>
                   <td className="py-4 px-6 text-center">7 days</td>
-                  <td className="py-4 px-6 text-center bg-recombee-blue/5">30 days</td>
+                  <td className="py-4 px-6 text-center bg-reccy-blue/5">30 days</td>
                   <td className="py-4 px-6 text-center">90 days</td>
                 </tr>
                 <tr className="border-t border-gray-200 dark:border-gray-700">
@@ -259,11 +259,11 @@ const Pricing = () => {
                       <span className="block w-2 h-1 bg-gray-400 dark:bg-gray-500 rounded-full"></span>
                     </div>
                   </td>
-                  <td className="py-4 px-6 text-center bg-recombee-blue/5">
-                    <Check className="w-5 h-5 text-recombee-blue mx-auto" />
+                  <td className="py-4 px-6 text-center bg-reccy-blue/5">
+                    <Check className="w-5 h-5 text-reccy-blue mx-auto" />
                   </td>
                   <td className="py-4 px-6 text-center">
-                    <Check className="w-5 h-5 text-recombee-blue mx-auto" />
+                    <Check className="w-5 h-5 text-reccy-blue mx-auto" />
                   </td>
                 </tr>
                 <tr className="border-t border-gray-200 dark:border-gray-700">
@@ -273,15 +273,15 @@ const Pricing = () => {
                       <span className="block w-2 h-1 bg-gray-400 dark:bg-gray-500 rounded-full"></span>
                     </div>
                   </td>
-                  <td className="py-4 px-6 text-center bg-recombee-blue/5">Limited</td>
+                  <td className="py-4 px-6 text-center bg-reccy-blue/5">Limited</td>
                   <td className="py-4 px-6 text-center">
-                    <Check className="w-5 h-5 text-recombee-blue mx-auto" />
+                    <Check className="w-5 h-5 text-reccy-blue mx-auto" />
                   </td>
                 </tr>
                 <tr className="border-t border-gray-200 dark:border-gray-700">
                   <td className="py-4 px-6 font-medium">Support</td>
                   <td className="py-4 px-6 text-center">Standard</td>
-                  <td className="py-4 px-6 text-center bg-recombee-blue/5">Priority</td>
+                  <td className="py-4 px-6 text-center bg-reccy-blue/5">Priority</td>
                   <td className="py-4 px-6 text-center">24/7 Premium</td>
                 </tr>
               </tbody>
@@ -295,7 +295,7 @@ const Pricing = () => {
         <div className="container mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16 reveal-animation">
             <h2 className="text-3xl font-bold mb-6">
-              Frequently Asked <span className="text-recombee-blue">Questions</span>
+              Frequently Asked <span className="text-reccy-blue">Questions</span>
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300">
               Have questions about our pricing or features? Find answers to common questions below.
@@ -317,7 +317,7 @@ const Pricing = () => {
             
             <div className="text-center mt-12 reveal-animation">
               <p className="text-lg mb-4">Still have questions?</p>
-              <Button className="bg-recombee-blue hover:bg-recombee-lightBlue text-white">
+              <Button className="bg-reccy-blue hover:bg-reccy-lightBlue text-white">
                 Contact Support
               </Button>
             </div>
@@ -326,14 +326,14 @@ const Pricing = () => {
       </section>
       
       {/* CTA Section */}
-      <section className="py-20 px-6 bg-recombee-blue text-white">
+      <section className="py-20 px-6 bg-reccy-blue text-white">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold mb-6 reveal-animation">Ready to Transform Your User Experience?</h2>
           <p className="text-lg max-w-2xl mx-auto mb-8 reveal-animation stagger-1">
-            Join thousands of businesses that use Recombee to deliver personalized recommendations and increase user engagement.
+            Join thousands of businesses that use Reccy to deliver personalized recommendations and increase user engagement.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 reveal-animation stagger-2">
-            <Button className="bg-white text-recombee-blue hover:bg-gray-100">
+            <Button className="bg-white text-reccy-blue hover:bg-gray-100">
               Start Free Trial
             </Button>
             <Button className="bg-reccy-blue text-white hover:bg-reccy-lightBlue border border-white">

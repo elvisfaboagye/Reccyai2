@@ -34,11 +34,11 @@ const ApiReference = () => {
       <section className="pt-32 pb-20 px-6">
         <div className="container mx-auto">
           <div className="max-w-3xl mx-auto text-center reveal-animation">
-            <div className="text-sm font-medium inline-block px-4 py-2 bg-recombee-blue/10 rounded-full text-recombee-blue border border-recombee-blue/20 mb-4">
+            <div className="text-sm font-medium inline-block px-4 py-2 bg-reccy-blue/10 rounded-full text-reccy-blue border border-reccy-blue/20 mb-4">
               Developer Resources
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              API <span className="text-recombee-blue">Reference</span>
+              API <span className="text-reccy-blue">Reference</span>
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
               Complete reference for Reccy AI's RESTful API, endpoints, parameters, and responses.
@@ -49,7 +49,7 @@ const ApiReference = () => {
               </div>
               <input
                 type="text"
-                className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-recombee-blue focus:border-recombee-blue bg-white dark:bg-gray-800 dark:border-gray-700"
+                className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-reccy-blue focus:border-reccy-blue bg-white dark:bg-gray-800 dark:border-gray-700"
                 placeholder="Search API endpoints..."
               />
             </div>
@@ -82,7 +82,7 @@ const ApiReference = () => {
                       <div 
                         key={category.id}
                         className={`py-2 px-3 rounded-lg cursor-pointer transition-colors ${
-                          openCategory === category.id ? 'bg-recombee-blue/10 text-recombee-blue' : 'hover:bg-gray-100 dark:hover:bg-gray-700'
+                          openCategory === category.id ? 'bg-reccy-blue/10 text-reccy-blue' : 'hover:bg-gray-100 dark:hover:bg-gray-700'
                         }`}
                         onClick={() => toggleCategory(category.id)}
                       >
@@ -95,23 +95,23 @@ const ApiReference = () => {
                         
                         {openCategory === category.id && (
                           <div className="mt-2 space-y-1 pl-2">
-                            <div className="text-sm py-1 px-2 rounded hover:bg-recombee-blue/5 cursor-pointer flex items-center">
+                            <div className="text-sm py-1 px-2 rounded hover:bg-reccy-blue/5 cursor-pointer flex items-center">
                               <ChevronRight className="h-3 w-3 mr-1" />
                               <span>List All</span>
                             </div>
-                            <div className="text-sm py-1 px-2 rounded hover:bg-recombee-blue/5 cursor-pointer flex items-center">
+                            <div className="text-sm py-1 px-2 rounded hover:bg-reccy-blue/5 cursor-pointer flex items-center">
                               <ChevronRight className="h-3 w-3 mr-1" />
                               <span>Get Single</span>
                             </div>
-                            <div className="text-sm py-1 px-2 rounded hover:bg-recombee-blue/5 cursor-pointer flex items-center">
+                            <div className="text-sm py-1 px-2 rounded hover:bg-reccy-blue/5 cursor-pointer flex items-center">
                               <ChevronRight className="h-3 w-3 mr-1" />
                               <span>Create</span>
                             </div>
-                            <div className="text-sm py-1 px-2 rounded hover:bg-recombee-blue/5 cursor-pointer flex items-center">
+                            <div className="text-sm py-1 px-2 rounded hover:bg-reccy-blue/5 cursor-pointer flex items-center">
                               <ChevronRight className="h-3 w-3 mr-1" />
                               <span>Update</span>
                             </div>
-                            <div className="text-sm py-1 px-2 rounded hover:bg-recombee-blue/5 cursor-pointer flex items-center">
+                            <div className="text-sm py-1 px-2 rounded hover:bg-reccy-blue/5 cursor-pointer flex items-center">
                               <ChevronRight className="h-3 w-3 mr-1" />
                               <span>Delete</span>
                             </div>
@@ -137,7 +137,7 @@ const ApiReference = () => {
                         https://api.reccy.ai/v1
                       </code>
                       <button 
-                        className="text-gray-500 hover:text-recombee-blue transition-colors"
+                        className="text-gray-500 hover:text-reccy-blue transition-colors"
                         onClick={() => handleCopy("https://api.reccy.ai/v1", "base-url")}
                       >
                         {copiedEndpoint === "base-url" ? <Check className="h-5 w-5" /> : <Copy className="h-5 w-5" />}
@@ -159,13 +159,13 @@ const ApiReference = () => {
                         Authorization: Bearer YOUR_API_KEY
                       </code>
                       <button 
-                        className="text-gray-500 hover:text-recombee-blue transition-colors"
+                        className="text-gray-500 hover:text-reccy-blue transition-colors"
                         onClick={() => handleCopy("Authorization: Bearer YOUR_API_KEY", "auth-header")}
                       >
                         {copiedEndpoint === "auth-header" ? <Check className="h-5 w-5" /> : <Copy className="h-5 w-5" />}
                       </button>
                     </div>
-                    <div className="bg-recombee-blue/10 text-recombee-blue p-4 rounded-lg">
+                    <div className="bg-reccy-blue/10 text-reccy-blue p-4 rounded-lg">
                       <div className="flex items-start">
                         <div className="mr-3 mt-0.5">
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -245,7 +245,7 @@ const ApiReference = () => {
                           GET /recommendations?user_id=user123&count=5&scenario=homepage
                         </code>
                         <button 
-                          className="text-gray-500 hover:text-recombee-blue transition-colors"
+                          className="text-gray-500 hover:text-reccy-blue transition-colors"
                           onClick={() => handleCopy("GET /recommendations?user_id=user123&count=5&scenario=homepage", "rec-request")}
                         >
                           {copiedEndpoint === "rec-request" ? <Check className="h-5 w-5" /> : <Copy className="h-5 w-5" />}
@@ -297,7 +297,7 @@ const ApiReference = () => {
 }`}
                         </pre>
                         <button 
-                          className="text-gray-500 hover:text-recombee-blue transition-colors ml-2"
+                          className="text-gray-500 hover:text-reccy-blue transition-colors ml-2"
                           onClick={() => handleCopy(`{
   "recommendations": [
     {
@@ -347,7 +347,7 @@ const ApiReference = () => {
                   
                   {/* More endpoints would be added here */}
                   <div className="text-center">
-                    <Button className="bg-recombee-blue hover:bg-recombee-lightBlue text-white">
+                    <Button className="bg-reccy-blue hover:bg-reccy-lightBlue text-white">
                       View All Endpoints
                     </Button>
                   </div>
@@ -359,17 +359,17 @@ const ApiReference = () => {
       </section>
       
       {/* Support Section */}
-      <section className="py-20 px-6 bg-recombee-light dark:bg-gray-900">
+      <section className="py-20 px-6 bg-reccy-light dark:bg-gray-900">
         <div className="container mx-auto">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6 reveal-animation">
-              Need <span className="text-recombee-blue">Help?</span>
+              Need <span className="text-reccy-blue">Help?</span>
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-10 reveal-animation stagger-1">
               Having trouble with the API? Our developer support team is here to help.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 reveal-animation stagger-2">
-              <Button className="bg-recombee-blue hover:bg-recombee-lightBlue text-white">
+              <Button className="bg-reccy-blue hover:bg-reccy-lightBlue text-white">
                 Contact Support
               </Button>
               <Button variant="outline">

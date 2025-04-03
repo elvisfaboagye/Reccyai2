@@ -20,7 +20,7 @@ const AboutUs = () => {
           }`}
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            About <span className="text-recombee-blue">Reccy AI</span>
+            About <span className="text-reccy-blue">Reccy AI</span>
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-300">
             We're on a mission to transform how businesses deliver personalized experiences.

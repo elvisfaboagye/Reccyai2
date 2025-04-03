@@ -112,7 +112,7 @@ const HealthcareSolution = () => {
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-base font-medium">Patient Engagement</h3>
-                    <Heart className="h-5 w-5 text-recombee-blue" />
+                    <Heart className="h-5 w-5 text-reccy-blue" />
                   </div>
                   <div className="text-3xl font-bold">68%</div>
                   <div className="text-green-500 text-sm flex items-center mt-1">
@@ -142,7 +142,7 @@ const HealthcareSolution = () => {
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-base font-medium">Program Completion</h3>
-                    <Activity className="h-5 w-5 text-recombee-blue" />
+                    <Activity className="h-5 w-5 text-reccy-blue" />
                   </div>
                   <div className="text-3xl font-bold">72%</div>
                   <div className="text-green-500 text-sm flex items-center mt-1">
@@ -172,7 +172,7 @@ const HealthcareSolution = () => {
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-base font-medium">Patient Satisfaction</h3>
-                    <Users className="h-5 w-5 text-recombee-blue" />
+                    <Users className="h-5 w-5 text-reccy-blue" />
                   </div>
                   <div className="text-3xl font-bold">92%</div>
                   <div className="text-green-500 text-sm flex items-center mt-1">

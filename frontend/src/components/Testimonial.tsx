@@ -9,7 +9,7 @@ const Testimonial = () => {
   return (
     <section 
       ref={ref} 
-      className={`py-24 px-6 bg-recombee-blue text-white transition-opacity duration-1000 ${
+      className={`py-24 px-6 bg-reccy-blue text-white transition-opacity duration-1000 ${
         isIntersecting ? 'opacity-100' : 'opacity-0'
       }`}
     >
@@ -28,7 +28,7 @@ const Testimonial = () => {
               isIntersecting ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            "Implementing Recombee's recommendation engine increased our conversion rate by 27% and customer engagement by 35%. The personalized recommendations have transformed how our customers discover products."
+            "Implementing Reccy's recommendation engine increased our conversion rate by 27% and customer engagement by 35%. The personalized recommendations have transformed how our customers discover products."
           </p>
           
           <div 
@@ -45,7 +45,7 @@ const Testimonial = () => {
             </div>
             <div className="text-left">
               <div className="font-semibold">Sarah Johnson</div>
-              <div className="text-recombee-lightBlue text-sm">Chief Digital Officer, TechRetail</div>
+              <div className="text-reccy-lightBlue text-sm">Chief Digital Officer, TechRetail</div>
             </div>
           </div>
         </div>

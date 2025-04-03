@@ -38,11 +38,11 @@ const UseCases = () => {
     <section id="clients" className="py-24 px-6">
       <div className="container mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16 reveal-animation">
-          <div className="text-sm font-medium inline-block px-4 py-2 bg-recombee-blue/10 rounded-full text-recombee-blue border border-recombee-blue/20 mb-4">
+          <div className="text-sm font-medium inline-block px-4 py-2 bg-reccy-blue/10 rounded-full text-reccy-blue border border-reccy-blue/20 mb-4">
             Industry Solutions
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            <span className="text-recombee-blue">Personalized</span> Recommendations for Every Industry
+            <span className="text-reccy-blue">Personalized</span> Recommendations for Every Industry
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300">
             See how our recommendation engine helps businesses across different industries deliver exceptional user experiences.
@@ -64,7 +64,7 @@ const UseCases = () => {
                   loading="lazy"
                 />
                 <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-recombee-lightBlue transition-colors">
+                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-reccy-lightBlue transition-colors">
                     {industry.title}
                   </h3>
                 </div>
@@ -74,7 +74,7 @@ const UseCases = () => {
               </p>
               <Button 
                 variant="link" 
-                className="text-recombee-blue hover:text-recombee-lightBlue px-0 flex items-center gap-1 group"
+                className="text-reccy-blue hover:text-reccy-lightBlue px-0 flex items-center gap-1 group"
                 asChild
               >
                 <Link to={industry.path}>

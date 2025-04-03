@@ -158,7 +158,7 @@ const Solutions = () => {
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold mb-6 reveal-animation">Ready to Transform Your User Experience?</h2>
           <p className="text-lg max-w-2xl mx-auto mb-8 reveal-animation stagger-1">
-            Join thousands of businesses that use Recombee to deliver personalized recommendations and increase user engagement.
+            Join thousands of businesses that use Reccy to deliver personalized recommendations and increase user engagement.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 reveal-animation stagger-2">
             <Button className="bg-white text-reccy-blue hover:bg-gray-100">

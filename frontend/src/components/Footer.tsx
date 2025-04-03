@@ -9,24 +9,24 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
             <div className="mb-6">
-              <Link to="/" className="text-recombee-dark dark:text-white font-bold text-2xl">
-                <span className="text-recombee-blue">Reccy</span> AI
+              <Link to="/" className="text-reccy-dark dark:text-white font-bold text-2xl">
+                <span className="text-reccy-blue">Reccy</span> AI
               </Link>
             </div>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
               AI-powered recommendation engine that helps businesses increase engagement, conversion, and retention.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-500 hover:text-recombee-blue transition-colors" aria-label="Twitter">
+              <a href="#" className="text-gray-500 hover:text-reccy-blue transition-colors" aria-label="Twitter">
                 <Twitter size={20} />
               </a>
-              <a href="#" className="text-gray-500 hover:text-recombee-blue transition-colors" aria-label="LinkedIn">
+              <a href="#" className="text-gray-500 hover:text-reccy-blue transition-colors" aria-label="LinkedIn">
                 <Linkedin size={20} />
               </a>
-              <a href="#" className="text-gray-500 hover:text-recombee-blue transition-colors" aria-label="GitHub">
+              <a href="#" className="text-gray-500 hover:text-reccy-blue transition-colors" aria-label="GitHub">
                 <Github size={20} />
               </a>
-              <a href="#" className="text-gray-500 hover:text-recombee-blue transition-colors" aria-label="Email">
+              <a href="#" className="text-gray-500 hover:text-reccy-blue transition-colors" aria-label="Email">
                 <Mail size={20} />
               </a>
             </div>
@@ -46,7 +46,7 @@ const Footer = () => {
                 <li key={item.name}>
                   <Link 
                     to={item.path} 
-                    className="text-gray-600 dark:text-gray-300 hover:text-recombee-blue dark:hover:text-recombee-lightBlue transition-colors"
+                    className="text-gray-600 dark:text-gray-300 hover:text-reccy-blue dark:hover:text-reccy-lightBlue transition-colors"
                   >
                     {item.name}
                   </Link>
@@ -70,7 +70,7 @@ const Footer = () => {
                 <li key={item.name}>
                   <Link 
                     to={item.path}
-                    className="text-gray-600 dark:text-gray-300 hover:text-recombee-blue dark:hover:text-recombee-lightBlue transition-colors"
+                    className="text-gray-600 dark:text-gray-300 hover:text-reccy-blue dark:hover:text-reccy-lightBlue transition-colors"
                   >
                     {item.name}
                   </Link>
@@ -93,7 +93,7 @@ const Footer = () => {
                 <li key={item.name}>
                   <Link 
                     to={item.path}
-                    className="text-gray-600 dark:text-gray-300 hover:text-recombee-blue dark:hover:text-recombee-lightBlue transition-colors"
+                    className="text-gray-600 dark:text-gray-300 hover:text-reccy-blue dark:hover:text-reccy-lightBlue transition-colors"
                   >
                     {item.name}
                   </Link>
@@ -108,13 +108,13 @@ const Footer = () => {
             © {new Date().getFullYear()} Reccy AI. All rights reserved.
           </p>
           <div className="flex space-x-6">
-            <Link to="/privacy-policy" className="text-gray-500 hover:text-recombee-blue text-sm transition-colors">
+            <Link to="/privacy-policy" className="text-gray-500 hover:text-reccy-blue text-sm transition-colors">
               Privacy Policy
             </Link>
-            <Link to="/terms-of-service" className="text-gray-500 hover:text-recombee-blue text-sm transition-colors">
+            <Link to="/terms-of-service" className="text-gray-500 hover:text-reccy-blue text-sm transition-colors">
               Terms of Service
             </Link>
-            <Link to="/cookies" className="text-gray-500 hover:text-recombee-blue text-sm transition-colors">
+            <Link to="/cookies" className="text-gray-500 hover:text-reccy-blue text-sm transition-colors">
               Cookies
             </Link>
           </div>

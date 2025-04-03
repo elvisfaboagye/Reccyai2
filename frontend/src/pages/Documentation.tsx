@@ -30,11 +30,11 @@ const Documentation = () => {
       <section className="pt-32 pb-20 px-6">
         <div className="container mx-auto">
           <div className="max-w-3xl mx-auto text-center reveal-animation">
-            <div className="text-sm font-medium inline-block px-4 py-2 bg-recombee-blue/10 rounded-full text-recombee-blue border border-recombee-blue/20 mb-4">
+            <div className="text-sm font-medium inline-block px-4 py-2 bg-reccy-blue/10 rounded-full text-reccy-blue border border-reccy-blue/20 mb-4">
               Developer Resources
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Reccy AI <span className="text-recombee-blue">Documentation</span>
+              Reccy AI <span className="text-reccy-blue">Documentation</span>
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
               Comprehensive guides and references to help you integrate and make the most of Reccy AI's recommendation engine.
@@ -45,7 +45,7 @@ const Documentation = () => {
               </div>
               <input
                 type="text"
-                className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-recombee-blue focus:border-recombee-blue bg-white dark:bg-gray-800 dark:border-gray-700"
+                className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-reccy-blue focus:border-reccy-blue bg-white dark:bg-gray-800 dark:border-gray-700"
                 placeholder="Search documentation..."
               />
             </div>
@@ -54,21 +54,21 @@ const Documentation = () => {
       </section>
       
       {/* Quick Start */}
-      <section className="py-16 px-6 bg-recombee-light dark:bg-gray-900">
+      <section className="py-16 px-6 bg-reccy-light dark:bg-gray-900">
         <div className="container mx-auto">
           <div className="max-w-5xl mx-auto">
             <div className="grid md:grid-cols-2 gap-10 items-center">
               <div className="reveal-animation">
                 <h2 className="text-3xl font-bold mb-6">
-                  Quick <span className="text-recombee-blue">Start</span>
+                  Quick <span className="text-reccy-blue">Start</span>
                 </h2>
                 <p className="text-gray-600 dark:text-gray-300 mb-6">
                   Get started with Reccy AI's recommendation engine in just a few minutes. Follow our step-by-step guide to integrate personalized recommendations into your application.
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-start">
-                    <div className="bg-recombee-blue/10 rounded-full p-2 mr-3 mt-1">
-                      <span className="flex items-center justify-center w-5 h-5 text-sm font-bold text-recombee-blue">1</span>
+                    <div className="bg-reccy-blue/10 rounded-full p-2 mr-3 mt-1">
+                      <span className="flex items-center justify-center w-5 h-5 text-sm font-bold text-reccy-blue">1</span>
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg mb-1">Create an Account</h3>
@@ -78,8 +78,8 @@ const Documentation = () => {
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="bg-recombee-blue/10 rounded-full p-2 mr-3 mt-1">
-                      <span className="flex items-center justify-center w-5 h-5 text-sm font-bold text-recombee-blue">2</span>
+                    <div className="bg-reccy-blue/10 rounded-full p-2 mr-3 mt-1">
+                      <span className="flex items-center justify-center w-5 h-5 text-sm font-bold text-reccy-blue">2</span>
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg mb-1">Install SDK</h3>
@@ -89,8 +89,8 @@ const Documentation = () => {
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="bg-recombee-blue/10 rounded-full p-2 mr-3 mt-1">
-                      <span className="flex items-center justify-center w-5 h-5 text-sm font-bold text-recombee-blue">3</span>
+                    <div className="bg-reccy-blue/10 rounded-full p-2 mr-3 mt-1">
+                      <span className="flex items-center justify-center w-5 h-5 text-sm font-bold text-reccy-blue">3</span>
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg mb-1">Initialize the Client</h3>
@@ -100,8 +100,8 @@ const Documentation = () => {
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="bg-recombee-blue/10 rounded-full p-2 mr-3 mt-1">
-                      <span className="flex items-center justify-center w-5 h-5 text-sm font-bold text-recombee-blue">4</span>
+                    <div className="bg-reccy-blue/10 rounded-full p-2 mr-3 mt-1">
+                      <span className="flex items-center justify-center w-5 h-5 text-sm font-bold text-reccy-blue">4</span>
                     </div>
                     <div>
                       <h3 className="font-semibold text-lg mb-1">Start Recommending</h3>
@@ -112,7 +112,7 @@ const Documentation = () => {
                   </div>
                 </div>
                 <div className="mt-8">
-                  <Button className="bg-recombee-blue hover:bg-recombee-lightBlue text-white">
+                  <Button className="bg-reccy-blue hover:bg-reccy-lightBlue text-white">
                     View Full Guide
                   </Button>
                 </div>
@@ -121,7 +121,7 @@ const Documentation = () => {
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="font-semibold">Installation</h3>
                   <button 
-                    className="text-gray-500 hover:text-recombee-blue transition-colors"
+                    className="text-gray-500 hover:text-reccy-blue transition-colors"
                     onClick={handleCopy}
                   >
                     {copied ? <Check className="h-5 w-5" /> : <Copy className="h-5 w-5" />}
@@ -153,7 +153,7 @@ const recommendations = await reccy.recommend({
                     </pre>
                   </div>
                 </div>
-                <Button variant="outline" className="w-full text-recombee-blue border-recombee-blue">
+                <Button variant="outline" className="w-full text-reccy-blue border-reccy-blue">
                   See More Examples
                 </Button>
               </div>
@@ -167,7 +167,7 @@ const recommendations = await reccy.recommend({
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold mb-12 text-center reveal-animation">
-              Explore the <span className="text-recombee-blue">Documentation</span>
+              Explore the <span className="text-reccy-blue">Documentation</span>
             </h2>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 reveal-animation stagger-1">
@@ -175,37 +175,37 @@ const recommendations = await reccy.recommend({
                 {
                   title: "Getting Started",
                   description: "Learn the basics of Reccy AI and how to set up your first recommendation engine.",
-                  icon: <Book className="h-6 w-6 text-recombee-blue" />,
+                  icon: <Book className="h-6 w-6 text-reccy-blue" />,
                   links: ["Quick Start Guide", "Core Concepts", "Authentication", "Project Setup"]
                 },
                 {
                   title: "API Reference",
                   description: "Detailed reference for all available API endpoints, parameters, and responses.",
-                  icon: <Code className="h-6 w-6 text-recombee-blue" />,
+                  icon: <Code className="h-6 w-6 text-reccy-blue" />,
                   links: ["REST API", "GraphQL API", "Webhooks", "Rate Limits"]
                 },
                 {
                   title: "SDKs & Libraries",
                   description: "Client libraries for various programming languages and platforms.",
-                  icon: <FileText className="h-6 w-6 text-recombee-blue" />,
+                  icon: <FileText className="h-6 w-6 text-reccy-blue" />,
                   links: ["JavaScript SDK", "Python SDK", "PHP SDK", "Ruby SDK"]
                 },
                 {
                   title: "Use Cases",
                   description: "Implementation guides for common recommendation scenarios and industry applications.",
-                  icon: <Book className="h-6 w-6 text-recombee-blue" />,
+                  icon: <Book className="h-6 w-6 text-reccy-blue" />,
                   links: ["Product Recommendations", "Content Suggestions", "Related Items", "Personalized Search"]
                 },
                 {
                   title: "Tutorials",
                   description: "Step-by-step tutorials for implementing various recommendation features.",
-                  icon: <Book className="h-6 w-6 text-recombee-blue" />,
+                  icon: <Book className="h-6 w-6 text-reccy-blue" />,
                   links: ["Basic Integration", "A/B Testing", "User Segmentation", "Real-time Recommendations"]
                 },
                 {
                   title: "Best Practices",
                   description: "Guidelines and recommendations for optimizing your recommendation engine.",
-                  icon: <Book className="h-6 w-6 text-recombee-blue" />,
+                  icon: <Book className="h-6 w-6 text-reccy-blue" />,
                   links: ["Performance Optimization", "Data Quality", "Security Guidelines", "Scaling Tips"]
                 }
               ].map((category, index) => (
@@ -222,7 +222,7 @@ const recommendations = await reccy.recommend({
                       <li key={linkIndex}>
                         <Link
                           to="#"
-                          className="text-recombee-blue hover:text-recombee-lightBlue text-sm flex items-center group"
+                          className="text-reccy-blue hover:text-reccy-lightBlue text-sm flex items-center group"
                         >
                           <ChevronRight className="h-4 w-4 mr-1 transform group-hover:translate-x-1 transition-transform" />
                           {link}
@@ -238,11 +238,11 @@ const recommendations = await reccy.recommend({
       </section>
       
       {/* Support Section */}
-      <section className="py-20 px-6 bg-recombee-light dark:bg-gray-900">
+      <section className="py-20 px-6 bg-reccy-light dark:bg-gray-900">
         <div className="container mx-auto">
           <div className="max-w-5xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6 reveal-animation">
-              Need <span className="text-recombee-blue">Help?</span>
+              Need <span className="text-reccy-blue">Help?</span>
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-10 max-w-3xl mx-auto reveal-animation stagger-1">
               Can't find what you're looking for? Our support team is here to help you with any questions or issues.
@@ -271,7 +271,7 @@ const recommendations = await reccy.recommend({
                 <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">
                   Chat with our support team in real-time for immediate assistance.
                 </p>
-                <Button className="w-full bg-recombee-blue hover:bg-recombee-lightBlue text-white">
+                <Button className="w-full bg-reccy-blue hover:bg-reccy-lightBlue text-white">
                   Start Chat
                 </Button>
               </div>

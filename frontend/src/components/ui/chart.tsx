@@ -1,65 +1,63 @@
+import React from 'react';
+import {
+  LineChart as RechartsLineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  BarChart as RechartsBarChart,
+  Bar,
+  PieChart as RechartsPieChart,
+  Pie,
+  Cell,
+} from 'recharts';
+import { cn } from '../../lib/utils';
 
-import React, { ReactNode } from 'react';
+interface ChartData {
+  [key: string]: string | number;
+}
 
 interface ChartProps {
   className?: string;
-  data: any[];
+  data: ChartData[];
   index: string;
   categories: string[];
-  valueFormatter?: (value: number) => string;
+  valueFormatter: (value: number) => string;
   showAnimation?: boolean;
   showLegend?: boolean;
   showXAxis?: boolean;
   showYAxis?: boolean;
   showGridLines?: boolean;
   colors?: string[];
-  children?: ReactNode;
+  yAxisLabel?: string;
+  xAxisLabel?: string;
 }
 
 export const BarChart = ({ 
   className = "", 
   data = [],
-  index = "",
-  categories = [], // Added default empty array
   valueFormatter = (value) => `${value}`,
   showLegend = true,
+  showXAxis = true,
+  showYAxis = true,
+  showGridLines = true,
   colors = ["#3b82f6"],
 }: ChartProps) => {
-  // Simple bar chart visualization
   return (
     <div className={className}>
-      <div className="flex flex-col space-y-4">
-        {data.map((item, index) => (
-          <div key={index} className="flex flex-col">
-            <div className="flex justify-between text-sm mb-1">
-              <span>{item.name}</span>
-              <span>{valueFormatter(item.value)}</span>
-            </div>
-            <div className="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-4">
-              <div 
-                className="h-4 rounded-full transition-all duration-1000" 
-                style={{ 
-                  width: `${Math.min(100, (item.value / Math.max(...data.map(d => d.value))) * 100)}%`,
-                  backgroundColor: colors[0]
-                }}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-      {showLegend && categories.length > 0 && (
-        <div className="flex justify-center mt-4 space-x-4">
-          {categories.map((category, i) => (
-            <div key={i} className="flex items-center">
-              <div 
-                className="w-3 h-3 rounded-full mr-1" 
-                style={{ backgroundColor: colors[i % colors.length] }}
-              />
-              <span className="text-xs">{category}</span>
-            </div>
-          ))}
-        </div>
-      )}
+      <ResponsiveContainer width="100%" height="100%">
+        <RechartsBarChart data={data}>
+          {showGridLines && <CartesianGrid strokeDasharray="3 3" />}
+          {showXAxis && <XAxis dataKey="name" />}
+          {showYAxis && <YAxis />}
+          <Tooltip formatter={valueFormatter} />
+          {showLegend && <Legend />}
+          <Bar dataKey="value" fill={colors[0]} />
+        </RechartsBarChart>
+      </ResponsiveContainer>
     </div>
   );
 };
@@ -67,67 +65,73 @@ export const BarChart = ({
 export const LineChart = ({ 
   className = "",
   data = [],
-  index = "",
-  categories = [], // Added default empty array
   valueFormatter = (value) => `${value}`,
-  colors = ["#3b82f6"],
+  showLegend = true,
   showXAxis = true,
   showYAxis = true,
+  showGridLines = true,
+  colors = ["#3b82f6"],
 }: ChartProps) => {
-  // Simple line visualization
   return (
     <div className={className}>
-      <div className="w-full h-full flex items-end">
-        {data.map((item, index) => (
-          <div key={index} className="flex-1 flex flex-col items-center">
-            <div 
-              className="w-1 rounded-t transition-all duration-1000" 
-              style={{ 
-                height: `${Math.min(100, (item.value / Math.max(...data.map(d => d.value))) * 100)}%`,
-                backgroundColor: colors[0]
-              }}
-            />
-            {showXAxis && <span className="text-xs mt-1">{item.date}</span>}
-          </div>
-        ))}
-      </div>
+      <ResponsiveContainer width="100%" height="100%">
+        <RechartsLineChart data={data}>
+          {showGridLines && <CartesianGrid strokeDasharray="3 3" />}
+          {showXAxis && <XAxis dataKey="name" />}
+          {showYAxis && <YAxis />}
+          <Tooltip formatter={valueFormatter} />
+          {showLegend && <Legend />}
+          <Line 
+            type="monotone" 
+            dataKey="value" 
+            stroke={colors[0]} 
+            strokeWidth={2}
+            dot={{ fill: colors[0] }}
+          />
+        </RechartsLineChart>
+      </ResponsiveContainer>
     </div>
   );
 };
 
-export const PieChart = ({ 
-  className = "",
-  data = [],
-  index = "",
-  categories = [], // Added default empty array
-  valueFormatter = (value) => `${value}`,
-  colors = ["#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6"],
-  showLegend = true,
-}: ChartProps) => {
-  // Simple legend-based visualization for pie chart
+export function PieChart({ data, index, categories, valueFormatter, colors, className, showLegend = true }: ChartProps) {
   return (
-    <div className={className}>
-      <div className="flex justify-center items-center mb-4">
-        <div className="w-40 h-40 rounded-full border-8 border-gray-100 dark:border-gray-800 flex items-center justify-center">
-          <span className="text-lg font-bold">
-            {valueFormatter(data.reduce((sum, item) => sum + item.value, 0))}
-          </span>
-        </div>
-      </div>
-      {showLegend && (
-        <div className="grid grid-cols-2 gap-2">
-          {data.map((item, i) => (
-            <div key={i} className="flex items-center">
-              <div 
-                className="w-3 h-3 rounded-full mr-2" 
-                style={{ backgroundColor: colors[i % colors.length] }}
-              />
-              <span className="text-sm">{item.name}</span>
-              <span className="text-sm ml-auto font-medium">{valueFormatter(item.value)}</span>
-            </div>
-          ))}
-        </div>
-      )}
+    <div className={cn("w-full", className)}>
+      <ResponsiveContainer width="100%" height="100%">
+        <RechartsPieChart>
+          <Pie
+            data={data}
+            cx="50%"
+            cy="50%"
+            innerRadius={60}
+            outerRadius={80}
+            paddingAngle={5}
+            dataKey={categories[0]}
+          >
+            {data.map((entry, i) => (
+              <Cell key={`cell-${i}`} fill={colors?.[i] ?? getColor(i)} />
+            ))}
+          </Pie>
+          {showLegend && (
+            <Legend
+              verticalAlign="bottom"
+              height={36}
+              formatter={(value) => (
+                <span className="text-sm text-gray-500 dark:text-gray-400">
+                  {value}
+                </span>
+              )}
+              wrapperStyle={{
+                paddingTop: '20px',
+                fontSize: '12px',
+                width: '100%',
+                overflow: 'visible'
+              }}
+            />
+          )}
+          <Tooltip formatter={valueFormatter} />
+        </RechartsPieChart>
+      </ResponsiveContainer>
     </div>
   );
-};
+}
