@@ -1,0 +1,31 @@
+[33mcommit da46b8a58f11fb451648a0c7766bc4e0b6830fba[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: elvisfaboagye <aboagyeelvis89@gmail.com>
+Date:   Thu Apr 3 17:40:05 2025 +0000
+
+    Update frontend with improved dashboard and chart components
+
+frontend/.gitignore
+frontend/package-lock.json
+frontend/package.json
+frontend/src/components/Features.tsx
+frontend/src/components/Footer.tsx
+frontend/src/components/Testimonial.tsx
+frontend/src/components/UseCases.tsx
+frontend/src/components/ui/chart.tsx
+frontend/src/index.css
+frontend/src/pages/AboutUs.tsx
+frontend/src/pages/ApiReference.tsx
+frontend/src/pages/Blog.tsx
+frontend/src/pages/Careers.tsx
+frontend/src/pages/Clients.tsx
+frontend/src/pages/Company.tsx
+frontend/src/pages/Documentation.tsx
+frontend/src/pages/Pricing.tsx
+frontend/src/pages/Resources.tsx
+frontend/src/pages/Solutions.tsx
+frontend/src/pages/UserDashboard.tsx
+frontend/src/pages/WatchDemo.tsx
+frontend/src/pages/dashboards/MediaDashboard.tsx
+frontend/src/pages/solutions/FinanceSolution.tsx
+frontend/src/pages/solutions/HealthcareSolution.tsx
+frontend/tailwind.config.ts

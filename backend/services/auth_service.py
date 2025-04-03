@@ -1,6 +1,6 @@
 import jwt
 from datetime import datetime, timedelta
-from config import Config
+from backend.config import Config
 
 class AuthService:
     def __init__(self, db):
