@@ -2,6 +2,13 @@
   "version": 2,
   "builds": [
     {
+      "src": "requirements.txt",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "."
+      }
+    },
+    {
       "src": "app.py",
       "use": "@vercel/python"
     }
